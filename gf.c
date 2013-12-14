@@ -1,5 +1,5 @@
 /*  GF(2^8), and x is primitive element.
-    primitive polynomial: x^8+x^4+x^3+x^2+1, [1 0001 1011] 
+    primitive polynomial: x^8+x^4+x^3+x^2+1, [1 0001 1101] 
         Generated element: {0, x^0, x^1, x^2, ...,x^i,..., x^255}, 'i' represents generated element
         Polynomial element: (0, 1, x, x^2, .., x7, x^4+x^3+x^2+1, ..., a,...), 'a' represents polynomial element
     ------------------
@@ -48,18 +48,14 @@ int my_div( int a, int b )
 }
 void main()
 {
-    genlt();
     int i;
-    unsigned char DEF = 2;
-    unsigned char C[256], M[256], O[256];
-    sprintf( (char*)C, "TMD" );
-    printf( "%s\n", C );
-    for( i=0; i<256; i++ ){
-        M[i] = mul( DEF, C[i] );
+    int a,b;
+    genlt();
+    // for(i = 0; i < 256; i++)
+    //     printf("%d ", gfilog[i]);
+    // printf("\n");
+    while(1){
+        scanf("%d %d", &a, &b);
+        printf("gfdiv = %d\n", my_div(a,b));
     }
-    printf( "%s\n", M );
-    for( i=0; i<256; i++ ){
-        O[i] = my_div( M[i], DEF );
-    }
-    printf( "%s\n", O );
 }

@@ -56,6 +56,6 @@ void main()
     // printf("\n");
     while(1){
         scanf("%d %d", &a, &b);
-        printf("gfdiv = %d\n", my_div(a,b));
+        printf("gfmul = %d\n", my_mul(a,b));
     }
 }

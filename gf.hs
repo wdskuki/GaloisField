@@ -1,10 +1,28 @@
 import Data.Bits
 import Data.List
 
-ppW8, ppW16:: Int --primitive polynomial in GF(8), GF(16), GF(32), respectively.
-ppW8 = 285 --x^8+x^4+x^3+x^2+1, [1 0001 1101]
+--primitive polynomial GF(2^(1~16)).
+--ppW1, ppW2, ppW3, ppW4, ppW5, ppW6, ppW7, ppW8, 
+--ppW9, ppW10, ppW11, ppW12, ppW13, ppW14, ppW15, ppW16:: Int 
+ppW1 = 3 -- x+1
+ppW2 = 7 -- x^2+x+1
+ppW3 = 11 -- x^3+x+1
+ppW4 = 19 -- x^4+x+1
+ppW5 = 37 -- x^5+x^2+1
+ppW6 = 67 -- x^6+x+1
+ppW7 = 137 -- x^7+x^3+1
+ppW8 = 285 -- x^8+x^4+x^3+x^2+1, [1 0001 1101]
+ppW9 = 529 -- x^9+x^4+1
+ppW10 = 1033 --x^10+x^3+1
+ppW11 = 2053 -- x^11+x^2+1
+ppW12 = 4179 -- x^12+x^6+x^4+x+1
+ppW13 = 8219 -- x^13+x^4+x^3+x+1
+ppW14 = 17475 -- x^14+x^10+x^6+x+1
+ppW15 = 32771 -- x^15+x+1
 ppW16 = 69643 -- x^16+x^12+x^3+x^1+1
 
+ppWlist = [ppW1, ppW2, ppW3, ppW4, ppW5, ppW6, ppW7, ppW8, ppW9,
+		   ppW10, ppW11, ppW12, ppW13, ppW14, ppW15, ppW16] :: [Int]
 -- get the sublist of xs from index of 'beg', and the length is 'len'
 sublist :: [a] -> Int -> Int -> [a]
 sublist xs beg len 
@@ -42,9 +60,7 @@ chgIndexsWithValues xs (i:indexs) (v:values)
 
 --get polynomial of w
 gfpolynomial :: Int -> Int 
-gfpolynomial w = case w of
-	16 -> ppW16
-	8 -> ppW8					
+gfpolynomial w = ppWlist !! (w-1)				
 
 --get infinite gf elements if i is infinite
 gfilogList :: Int -> Int -> [Int]
@@ -220,5 +236,3 @@ raid6recv xs w = do
 		let ix = elemIndices (-1) xs
 		in raid6recvTwo xs ix w
 	else xs
-
-
